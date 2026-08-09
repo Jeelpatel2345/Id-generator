@@ -6,10 +6,10 @@ import {
     Image as ImageIcon,
     X,
 } from "lucide-react";
-
+import { motion } from "framer-motion";
 import useGenerator from "../../hooks/useGenerator";
 
-const UploadCard = () => {
+export const UploadCard = () => {
     const {
         data,
         setData,
@@ -68,22 +68,16 @@ const UploadCard = () => {
     }, [data.image]);
 
     return (
-        <div>
-
-            {/* ========================================= */}
-            {/* UPLOAD PHOTO CARD */}
-            {/* ========================================= */}
-
+        <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+        >
             <div className="rounded-3xl border border-[#39FF14]/20 bg-[#0A0F1A] p-5 sm:p-6">
-
-                {/* HEADER */}
-
                 <div className="mb-6 flex items-center justify-between">
-
                     <h2 className="text-xl font-bold text-white">
                         Upload Photo
                     </h2>
-
                     <button
                         type="button"
                         onClick={handleReset}
@@ -105,10 +99,7 @@ const UploadCard = () => {
                         <RotateCcw size={15} />
                         Reset
                     </button>
-
                 </div>
-
-                {/* DROP AREA */}
 
                 <div
                     {...getRootProps()}
@@ -118,23 +109,21 @@ const UploadCard = () => {
                         border-2
                         border-dashed
                         p-5
-                        transition
+                        transition-colors
                         sm:p-6
-
                         ${isDragActive
-                            ? "border-[#39FF14] bg-[#39FF14]/10"
-                            : "border-[#39FF14]/20 hover:border-[#39FF14]/50"
+                            ? "border-[#39FF14] bg-[#39FF14]/10 scale-[1.02]"
+                            : "bg-transparent"
                         }
                     `}
                 >
-
                     <input {...getInputProps()} />
 
                     {data.image ? (
-
                         <div className="relative">
-
-                            <img
+                            <motion.img
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
                                 src={data.image}
                                 alt="Uploaded builder"
                                 className="
@@ -144,7 +133,6 @@ const UploadCard = () => {
                                     object-cover
                                 "
                             />
-
                             <button
                                 type="button"
                                 onClick={(event) => {
@@ -169,70 +157,48 @@ const UploadCard = () => {
                             >
                                 <X size={17} />
                             </button>
-
                         </div>
-
                     ) : (
-
                         <div className="py-10 text-center">
-
                             <Upload
                                 size={52}
                                 className="mx-auto text-[#39FF14]"
                             />
-
                             <h3 className="mt-4 text-lg font-semibold text-white">
                                 {isDragActive
                                     ? "Drop your image here"
                                     : "Drag & Drop Image"}
                             </h3>
-
                             <p className="mt-2 text-sm text-slate-400">
                                 or click to browse
                             </p>
-
                             <p className="mt-3 text-xs text-slate-500">
                                 PNG, JPG, JPEG or WEBP
                             </p>
-
                         </div>
-
                     )}
-
                 </div>
-
-                {/* IMAGE INFORMATION */}
 
                 {data.image && (
                     <div className="mt-5 rounded-xl bg-[#111827] p-4">
-
                         <div className="flex items-center gap-3">
-
                             <ImageIcon
                                 size={20}
                                 className="text-[#39FF14]"
                             />
-
                             <div className="min-w-0">
-
                                 <h4 className="truncate text-sm font-medium text-white">
                                     Profile image selected
                                 </h4>
-
                                 <p className="text-xs text-slate-400">
                                     Ready for Builder Card
                                 </p>
-
                             </div>
-
                         </div>
-
                     </div>
                 )}
-
             </div>
-
-        </div>
+        </motion.div>
     );
 };
 

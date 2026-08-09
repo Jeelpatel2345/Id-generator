@@ -136,23 +136,31 @@ const ActionButtons = () => {
                     onClick={generatePreview}
                     disabled={!data.image}
                     className="
-                        flex
-                        w-full
-                        items-center
-                        justify-center
-                        gap-2
-                        rounded-xl
-                        bg-[#39FF14]
-                        py-4
-                        font-bold
-                        text-black
-                        transition
-                        hover:shadow-[0_0_30px_rgba(57,255,20,0.45)]
-                        disabled:cursor-not-allowed
-                        disabled:opacity-40
-                    "
+                    flex
+                    w-full
+                    items-center
+                    justify-center
+                    gap-2
+                    rounded-xl
+                    border
+                    border-[#39FF14]/30
+                    bg-[#39FF14]
+                    px-5
+                    py-3.5
+                    text-sm
+                    font-bold
+                    text-black
+                    shadow-[0_0_20px_rgba(57,255,20,0.12)]
+                    transition-all
+                    duration-200
+                    hover:brightness-105
+                    hover:shadow-[0_0_30px_rgba(57,255,20,0.35)]
+                    disabled:cursor-not-allowed
+                    disabled:opacity-40
+                    disabled:hover:shadow-none
+                "
                 >
-                    <Sparkles size={19} />
+                    <Sparkles size={18} />
 
                     Generate Preview
                 </button>
@@ -168,27 +176,34 @@ const ActionButtons = () => {
                         onClick={generatePNG}
                         disabled={isGenerating}
                         className="
-                            flex
-                            w-full
-                            items-center
-                            justify-center
-                            gap-2
-                            rounded-xl
-                            bg-[#39FF14]
-                            py-4
-                            font-bold
-                            text-black
-                            transition
-                            hover:shadow-[0_0_30px_rgba(57,255,20,0.45)]
-                            disabled:cursor-not-allowed
-                            disabled:opacity-60
-                        "
+                        flex
+                        w-full
+                        items-center
+                        justify-center
+                        gap-2
+                        rounded-xl
+                        border
+                        border-[#39FF14]/30
+                        bg-[#39FF14]
+                        px-5
+                        py-3.5
+                        text-sm
+                        font-bold
+                        text-black
+                        shadow-[0_0_20px_rgba(57,255,20,0.12)]
+                        transition-all
+                        duration-200
+                        hover:brightness-105
+                        hover:shadow-[0_0_30px_rgba(57,255,20,0.35)]
+                        disabled:cursor-not-allowed
+                        disabled:opacity-60
+                    "
                     >
 
                         {isGenerating ? (
                             <>
                                 <Loader2
-                                    size={19}
+                                    size={18}
                                     className="animate-spin"
                                 />
 
@@ -196,7 +211,7 @@ const ActionButtons = () => {
                             </>
                         ) : (
                             <>
-                                <Download size={19} />
+                                <Download size={18} />
 
                                 Download Builder Card
                             </>

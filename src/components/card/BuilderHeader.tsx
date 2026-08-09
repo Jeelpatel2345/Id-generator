@@ -2,58 +2,72 @@ import logo from "../../assets/logo.png";
 
 const BuilderHeader = () => {
     return (
-        <div
-            className="
-                flex
-                items-center
-                justify-between
-                border-b
-                border-white/10
-                px-6
-                py-5
-            "
-        >
-            {/* Brand */}
+        <div className="flex items-center justify-between gap-4">
 
-            <div className="flex items-center gap-3">
+            {/* BRAND */}
+
+            <div className="flex min-w-0 items-center gap-3">
 
                 <img
                     src={logo}
                     alt="Hacker House"
-                    className="h-10 w-10 rounded-lg object-cover"
+                    className="
+                        h-10
+                        w-10
+                        shrink-0
+                        rounded-lg
+                        object-cover
+                        sm:h-11
+                        sm:w-11
+                    "
                 />
 
-                <div>
-                    <h3 className="text-sm font-bold tracking-wide text-white">
+                <div className="min-w-0">
+
+                    <h3
+                        className="
+                            truncate
+                            text-sm
+                            font-bold
+                            tracking-wide
+                            text-white
+                            sm:text-base
+                        "
+                    >
                         HH GOA 2026
                     </h3>
 
-                    <p className="text-[10px] text-slate-400">
+                    <p className="text-[10px] text-slate-400 sm:text-xs">
                         Builder Identity
                     </p>
+
                 </div>
 
             </div>
 
 
-            {/* Level */}
+            {/* LEVEL */}
 
             <div
                 className="
+                    shrink-0
                     rounded-full
                     border
                     border-[#39FF14]/20
                     bg-[#39FF14]/10
                     px-3
-                    py-1
+                    py-1.5
+                    sm:px-4
+                    sm:py-2
                 "
             >
                 <span
                     className="
-                        text-[10px]
+                        text-[9px]
                         font-bold
                         tracking-wider
                         text-[#39FF14]
+                        sm:text-[10px]
                     "
                 >
                     LEVEL 07

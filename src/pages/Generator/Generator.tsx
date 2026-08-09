@@ -1,70 +1,95 @@
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from 'react-router-dom';
+import { GeneratorProvider } from '../../context/GeneratorContext';
+import GeneratorLayout from '../../components/generator/GeneratorLayout';
+import UploadCard from '../../components/generator/UploadCard';
+import PreviewCard from '../../components/generator/PreviewCard';
+import FrameCard from '../../components/frame/FrameCard';
+import BuilderDetailsPanel from '../../components/card/BuilderDetails';
+import { motion } from 'framer-motion';
+import { ArrowLeft, CreditCard, Frame } from 'lucide-react';
 
-import { GeneratorProvider } from "../../context/GeneratorContext";
+const GeneratorContent = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const isFrameMode = searchParams.get('mode') === 'frame';
 
-import GeneratorLayout from "../../components/generator/GeneratorLayout";
-import UploadCard from "../../components/generator/UploadCard";
-import PreviewCard from "../../components/generator/PreviewCard";
+  return (
+    <main className="min-h-screen bg-[#04070D] text-white">
+      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
+        <button
+          onClick={() => navigate('/')}
+          className="flex items-center gap-2 text-slate-400 hover:text-white transition text-sm mb-4"
+        >
+          <ArrowLeft size={16} />
+          Back to Home
+        </button>
 
-import FrameCard from "../../components/frame/FrameCard";
-import BuilderDetailsPanel from "../../components/card/BuilderDetails"; 
-const Generator = () => {
-    const [searchParams] = useSearchParams();
+        <div className="flex gap-3 mt-4 mb-8">
+          <button
+            onClick={() => setSearchParams({ mode: 'builder' })}
+            className={`flex items-center gap-2 rounded-xl border px-5 py-3 text-sm font-medium transition cursor-pointer ${
+              !isFrameMode
+                ? 'bg-[#39FF14]/10 border-[#39FF14]/30 text-[#39FF14]'
+                : 'border-white/10 text-slate-400 hover:text-white hover:border-white/20'
+            }`}
+          >
+            <CreditCard size={18} />
+            Builder Card
+          </button>
+          <button
+            onClick={() => setSearchParams({ mode: 'frame' })}
+            className={`flex items-center gap-2 rounded-xl border px-5 py-3 text-sm font-medium transition cursor-pointer ${
+              isFrameMode
+                ? 'bg-[#39FF14]/10 border-[#39FF14]/30 text-[#39FF14]'
+                : 'border-white/10 text-slate-400 hover:text-white hover:border-white/20'
+            }`}
+          >
+            <Frame size={18} />
+            PFP Frame
+          </button>
+        </div>
 
-    const mode = searchParams.get("mode");
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+        >
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold sm:text-4xl font-heading">
+              {isFrameMode ? 'Create PFP Frame' : 'Generate Builder Card'}
+            </h1>
+            <p className="text-slate-400 mt-2 mb-8">
+              {isFrameMode
+                ? 'Add the Hacker House Goa frame to your profile picture.'
+                : 'Enter your details and upload a photo to generate your custom identity.'}
+            </p>
+          </div>
 
-    const isFrameMode = mode === "frame";
-
-    return (
-        <GeneratorProvider>
-
-            <main className="min-h-screen bg-[#04070D] text-white">
-
-                <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10">
-
-                    {/* PAGE HEADER */}
-
-                    <h1 className="text-3xl font-bold sm:text-4xl">
-                        {isFrameMode
-                            ? "Profile Frame Generator"
-                            : "Builder ID Generator"}
-                    </h1>
-
-                    <p className="mt-2 mb-8 text-sm text-slate-400 sm:text-base">
-                        {isFrameMode
-                            ? "Create your custom Hacker House profile frame."
-                            : "Create your personalized Builder ID Card."}
-                    </p>
-
-
-                    {/* FRAME MODE */}
-
-                    {isFrameMode ? (
-
-                        <FrameCard />
-
-                    ) : (
-
-                        /* BUILDER MODE */
-
-                        <GeneratorLayout
-                            left={
-                                <div className="space-y-5">
-                                    <UploadCard />
-                                    <BuilderDetailsPanel />
-                                </div>
-                            }
-                            right={<PreviewCard />}
-                        />
-
-                    )}
-
+          {isFrameMode ? (
+            <FrameCard />
+          ) : (
+            <GeneratorLayout
+              left={
+                <div className="space-y-5">
+                  <UploadCard />
+                  <BuilderDetailsPanel />
                 </div>
+              }
+              right={<PreviewCard />}
+            />
+          )}
+        </motion.div>
+      </div>
+    </main>
+  );
+};
 
-            </main>
-
-        </GeneratorProvider>
-    );
+export const Generator = () => {
+  return (
+    <GeneratorProvider>
+      <GeneratorContent />
+    </GeneratorProvider>
+  );
 };
 
 export default Generator;

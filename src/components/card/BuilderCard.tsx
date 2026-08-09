@@ -11,112 +11,113 @@ const BuilderCard = () => {
         <div
             id="builder-card"
             className="
-                relative
                 w-full
-                max-w-sm
+                max-w-[390px]
                 overflow-hidden
                 rounded-3xl
                 border
-                border-[#39FF14]/30
+                border-[#39FF14]/20
                 bg-[#0A0F1A]
-                shadow-[0_0_45px_rgba(57,255,20,0.10)]
+                shadow-[0_0_40px_rgba(57,255,20,0.08)]
             "
         >
 
-            {/* TOP GLOW */}
-
-            <div
-                className="
-                    pointer-events-none
-                    absolute
-                    left-1/2
-                    top-0
-                    h-32
-                    w-64
-                    -translate-x-1/2
-                    rounded-full
-                    bg-[#39FF14]/10
-                    blur-3xl
-                "
-            />
-
-
             {/* HEADER */}
 
-            <div className="relative z-10">
+            <div className="px-5 py-5 sm:px-6 sm:py-6">
                 <BuilderHeader />
             </div>
 
 
-            {/* DIVIDER */}
+            {/* PROFILE PHOTO */}
 
-            <div className="mx-6 h-px bg-white/10" />
-
-
-            {/* PROFILE */}
-
-            <div className="relative z-10 py-8">
+            <div className="px-5 pt-5 sm:px-6 sm:pt-7">
                 <BuilderProfile />
             </div>
 
 
             {/* BUILDER INFORMATION */}
 
-            <div className="relative z-10 px-6 pb-8 text-center">
+            <div className="px-5 pb-6 pt-3 text-center sm:px-6 sm:pb-8 sm:pt-4">
 
-                <h2 className="text-2xl font-bold tracking-tight text-white">
+                <h2
+                    className="
+                        break-words
+                        text-2xl
+                        font-bold
+                        leading-tight
+                        text-white
+                        sm:text-3xl
+                    "
+                >
                     {data.name || "Your Name"}
                 </h2>
 
-                <p className="mt-2 text-sm font-semibold tracking-wide text-[#39FF14]">
-                    {data.role || "Builder"}
+                <p
+                    className="
+                        mt-2
+                        text-base
+                        font-medium
+                        text-[#39FF14]
+                        sm:text-lg
+                    "
+                >
+                    {data.role}
                 </p>
 
-                <p className="mt-2 text-sm text-slate-400">
+                <p
+                    className="
+                        mt-2
+                        break-all
+                        text-sm
+                        text-slate-400
+                        sm:text-base
+                    "
+                >
                     {data.username || "@username"}
                 </p>
 
-            </div>
 
+                {/* STATUS */}
 
-            {/* STATUS */}
+                <div className="mt-5 flex justify-center">
 
-            <div className="flex items-center justify-center pb-6">
-
-                <div
-                    className="
-                        flex
-                        items-center
-                        gap-2
-                        rounded-full
-                        border
-                        border-[#39FF14]/30
-                        bg-[#39FF14]/5
-                        px-4
-                        py-2
-                    "
-                >
-
-                    <span
+                    <div
                         className="
-                            h-2
-                            w-2
+                            inline-flex
+                            items-center
+                            gap-3
                             rounded-full
-                            bg-[#39FF14]
-                            shadow-[0_0_10px_rgba(57,255,20,0.8)]
-                        "
-                    />
-
-                    <span
-                        className="
-                            text-[10px]
-                            font-bold
-                            tracking-[0.25em]
-                            text-[#39FF14]
+                            border
+                            border-[#39FF14]/30
+                            bg-[#39FF14]/10
+                            px-6
+                            py-2
                         "
                     >
-                        BUILDING
-                    </span>
+
+                        <span
+                            className="
+                                h-2.5
+                                w-2.5
+                                rounded-full
+                                bg-[#39FF14]
+                                shadow-[0_0_10px_rgba(57,255,20,0.8)]
+                            "
+                        />
+
+                        <span
+                            className="
+                                text-xs
+                                font-bold
+                                tracking-[0.22em]
+                                text-[#39FF14]
+                            "
+                        >
+                            BUILDING
+                        </span>
+
+                    </div>
 
                 </div>
 
@@ -125,7 +126,15 @@ const BuilderCard = () => {
 
             {/* FOOTER */}
 
-            <div className="border-t border-white/10">
+            <div
+                className="
+                    border-t
+                    border-white/10
+                    px-5
+                    py-4
+                    sm:px-6
+                "
+            >
                 <BuilderFooter />
             </div>
 

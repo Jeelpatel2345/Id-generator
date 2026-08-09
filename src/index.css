@@ -1,7 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body{
-    margin:0;
+:root {
+  --color-neon: #39FF14;
+  --color-dark: #04070D;
+  --color-card: #0A0F1A;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-dark);
+  color: #cbd5e1; /* slate-300 */
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-neon);
+  border-radius: 4px;
+}
+
+/* Selection colors */
+::selection {
+  background-color: var(--color-neon);
+  color: #000000;
 }
