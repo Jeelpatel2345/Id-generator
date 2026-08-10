@@ -1,5 +1,5 @@
 import { useState } from "react";
-import html2canvas from "html2canvas";
+import { toPng } from "html-to-image";
 
 import {
     Download,
@@ -45,74 +45,47 @@ const ActionButtons = () => {
         setIsGenerating(true);
 
         try {
+            // html2canvas can otherwise capture before the web fonts are ready,
+            // which makes downloaded text look soft or inconsistent.
+            await document.fonts?.ready;
 
-            const canvas =
-                await html2canvas(card, {
-                    scale: 4,
+            const png = await toPng(card, {
+                pixelRatio: 3,
+                cacheBust: true,
+                backgroundColor: "#0A0F1A",
+            });
 
-                    useCORS: true,
+            const response = await fetch(png);
+            const blob = await response.blob();
+            const url = URL.createObjectURL(blob);
 
-                    allowTaint: false,
+            const link = document.createElement("a");
 
-                    backgroundColor: "#0B1220",
+            const safeName =
+                data.name
+                    ?.trim()
+                    .replace(
+                        /[^a-zA-Z0-9]+/g,
+                        "-"
+                    )
+                    .replace(
+                        /^-+|-+$/g,
+                        ""
+                    ) || "builder";
 
-                    logging: false,
+            link.href = url;
 
-                    imageTimeout: 15000,
+            link.download = `HH-Goa-2026-${safeName}-Builder-Card.png`;
 
-                    removeContainer: true,
-                });
+            document.body.appendChild(link);
 
-            canvas.toBlob(
-                (blob) => {
+            link.click();
 
-                    if (!blob) {
+            document.body.removeChild(link);
 
-                        console.error(
-                            "Could not create PNG."
-                        );
+            URL.revokeObjectURL(url);
 
-                        setIsGenerating(false);
-
-                        return;
-                    }
-
-                    const url =
-                        URL.createObjectURL(blob);
-
-                    const link =
-                        document.createElement("a");
-
-                    const safeName =
-                        data.name
-                            ?.trim()
-                            .replace(
-                                /[^a-zA-Z0-9]+/g,
-                                "-"
-                            )
-                            .replace(
-                                /^-+|-+$/g,
-                                ""
-                            ) || "builder";
-
-                    link.href = url;
-
-                    link.download =
-                        `HH-Goa-2026-${safeName}-Builder-Card.png`;
-
-                    document.body.appendChild(link);
-
-                    link.click();
-
-                    document.body.removeChild(link);
-
-                    URL.revokeObjectURL(url);
-
-                    setIsGenerating(false);
-                },
-                "image/png",
-                1
-            );
+            setIsGenerating(false);
 
         } catch (error) {
 

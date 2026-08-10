@@ -2,7 +2,7 @@ import logo from "../../assets/logo.png";
 
 const BuilderHeader = () => {
     return (
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-2 sm:gap-4">
 
             {/* BRAND */}
 
@@ -22,12 +22,12 @@ const BuilderHeader = () => {
                     "
                 />
 
-                <div className="min-w-0">
+                <div className="min-w-0 text-left">
 
                     <h3
                         className="
                             truncate
-                            text-sm
+                            text-xs
                             font-bold
                             tracking-wide
                             text-white
@@ -55,7 +55,7 @@ const BuilderHeader = () => {
                     border
                     border-[#39FF14]/20
                     bg-[#39FF14]/10
-                    px-3
+                    px-2
                     py-1.5
                     sm:px-4
                     sm:py-2

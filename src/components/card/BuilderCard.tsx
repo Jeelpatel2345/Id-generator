@@ -12,7 +12,11 @@ const BuilderCard = () => {
             id="builder-card"
             className="
                 w-full
+                mx-auto
+                flex
                 max-w-[390px]
+                aspect-[4/5]
+                flex-col
                 overflow-hidden
                 rounded-3xl
                 border
@@ -24,30 +28,30 @@ const BuilderCard = () => {
 
             {/* HEADER */}
 
-            <div className="px-5 py-5 sm:px-6 sm:py-6">
+            <div className="px-4 py-4 sm:px-6 sm:py-5">
                 <BuilderHeader />
             </div>
 
 
             {/* PROFILE PHOTO */}
 
-            <div className="px-5 pt-5 sm:px-6 sm:pt-7">
+            <div className="px-4 pt-3 sm:px-6 sm:pt-4">
                 <BuilderProfile />
             </div>
 
 
             {/* BUILDER INFORMATION */}
 
-            <div className="px-5 pb-6 pt-3 text-center sm:px-6 sm:pb-8 sm:pt-4">
+            <div className="px-4 pb-5 pt-4 text-center sm:px-6 sm:pb-6">
 
                 <h2
                     className="
                         break-words
-                        text-2xl
+                        text-xl
                         font-bold
                         leading-tight
                         text-white
-                        sm:text-3xl
+                        sm:text-2xl
                     "
                 >
                     {data.name || "Your Name"}
@@ -55,7 +59,7 @@ const BuilderCard = () => {
 
                 <p
                     className="
-                        mt-2
+                        mt-1
                         text-base
                         font-medium
                         text-[#39FF14]
@@ -80,7 +84,7 @@ const BuilderCard = () => {
 
                 {/* STATUS */}
 
-                <div className="mt-5 flex justify-center">
+                <div className="mt-4 flex justify-center">
 
                     <div
                         className="
@@ -130,8 +134,8 @@ const BuilderCard = () => {
                 className="
                     border-t
                     border-white/10
-                    px-5
-                    py-4
+                    px-4
+                    py-3
                     sm:px-6
                 "
             >

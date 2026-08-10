@@ -19,8 +19,8 @@ const BuilderProfile = () => {
                     border-[#39FF14]
                     bg-[#111827]
                     shadow-[0_0_30px_rgba(57,255,20,0.15)]
-                    sm:h-44
-                    sm:w-44
+                    sm:h-36
+                    sm:w-36
                 "
             >
 
@@ -31,7 +31,9 @@ const BuilderProfile = () => {
                         className="
                             h-full
                             w-full
+                            block
                             object-cover
+                            object-center
                         "
                     />
                 ) : (

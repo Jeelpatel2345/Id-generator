@@ -13,7 +13,10 @@ export const PreviewCard = () => {
                 border
                 border-[#39FF14]/20
                 bg-[#0A0F1A]
-                p-5
+                mx-auto
+                w-full
+                max-w-2xl
+                p-4
                 sm:p-6
                 lg:p-8
             "
@@ -56,7 +59,7 @@ export const PreviewCard = () => {
             </div>
 
             {/* BUILDER CARD PREVIEW */}
-            <div className="relative overflow-hidden rounded-2xl flex w-full items-center justify-center px-2 py-6 sm:px-4 sm:py-8">
+            <div className="relative flex w-full items-center justify-center overflow-hidden rounded-2xl px-0 py-5 sm:px-4 sm:py-8">
                 <motion.div
                     animate={{ scale: [1, 1.05, 1] }}
                     transition={{ duration: 4, repeat: Infinity }}
