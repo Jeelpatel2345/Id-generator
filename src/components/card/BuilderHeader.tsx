@@ -12,14 +12,20 @@ const BuilderHeader = () => {
                     src={logo}
                     alt="Hacker House"
                     className="
-                        h-10
-                        w-10
+                        h-12
+                        w-12
                         shrink-0
-                        rounded-lg
-                        object-cover
-                        sm:h-11
-                        sm:w-11
+                        rounded-xl
+                        border
+                        border-[#39FF14]/25
+                        bg-[#08733A]
+                        p-1
+                        object-contain
+                        sm:h-12
+                        sm:w-12
                     "
+                    decoding="sync"
+                    draggable={false}
                 />
 
                 <div className="min-w-0 text-left">
