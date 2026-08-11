@@ -3,35 +3,11 @@ import { Download, Sparkles } from "lucide-react";
 import { toPng } from "html-to-image";
 import useGenerator from "../../hooks/useGenerator";
 
-const FrameActions = () => {
+const FrameActions = ({ onGenerated }: { onGenerated: () => void }) => {
     const { data } = useGenerator();
 
     const [generating, setGenerating] = useState(false);
     const [downloading, setDownloading] = useState(false);
-
-    // Convert uploaded blob image into a data URL
-    const blobToDataUrl = async (blobUrl: string): Promise<string> => {
-        const response = await fetch(blobUrl);
-        const blob = await response.blob();
-
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-
-            reader.onloadend = () => {
-                if (typeof reader.result === "string") {
-                    resolve(reader.result);
-                } else {
-                    reject(new Error("Could not convert image."));
-                }
-            };
-
-            reader.onerror = () => {
-                reject(new Error("Could not read image."));
-            };
-
-            reader.readAsDataURL(blob);
-        });
-    };
 
     const waitForImages = async (element: HTMLElement) => {
         const images = Array.from(
@@ -69,6 +45,7 @@ const FrameActions = () => {
             setTimeout(resolve, 700)
         );
 
+        onGenerated();
         setGenerating(false);
     };
 
@@ -88,36 +65,9 @@ const FrameActions = () => {
         try {
             setDownloading(true);
 
-            /*
-             * STEP 1
-             * Convert blob URL to base64/data URL.
-             */
-            const imageDataUrl = await blobToDataUrl(data.image);
-
-            /*
-             * STEP 2
-             * Temporarily replace the preview image source.
-             */
-            const imageElements =
-                element.querySelectorAll("img");
-
-            const originalSources: string[] = [];
-
-            imageElements.forEach((img) => {
-                originalSources.push(img.src);
-                img.src = imageDataUrl;
-            });
-
-            /*
-             * STEP 3
-             * Wait for the converted image to load.
-             */
+            // Uploaded images are stored as data URLs, so they are safe to export directly.
             await waitForImages(element);
 
-            /*
-             * STEP 4
-             * Allow browser to finish rendering.
-             */
             await new Promise<void>((resolve) => {
                 requestAnimationFrame(() => {
                     requestAnimationFrame(() => {
@@ -126,29 +76,10 @@ const FrameActions = () => {
                 });
             });
 
-            /*
-             * STEP 5
-             * Generate PNG.
-             */
             const pngDataUrl = await toPng(element, {
-                cacheBust: true,
-                pixelRatio: 2,
+                pixelRatio: 3,
                 backgroundColor: "#070B12",
-                skipFonts: true,
             });
-
-            /*
-             * STEP 6
-             * Restore original image source.
-             */
-            imageElements.forEach((img, index) => {
-                img.src = originalSources[index];
-            });
-
-            /*
-             * STEP 7
-             * Download.
-             */
             const link = document.createElement("a");
 
             link.download = "HH-GOA-2026-PFP.png";

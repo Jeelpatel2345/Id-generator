@@ -1,8 +1,10 @@
 import useGenerator from "../../hooks/useGenerator";
 import FrameActions from "./FrameActions";
+import { useState } from "react";
 
 const FramePreview = () => {
     const { data } = useGenerator();
+    const [isFrameGenerated, setIsFrameGenerated] = useState(false);
 
     return (
         <div className="rounded-3xl border border-[#39FF14]/20 bg-[#0A0F1A] p-5 sm:p-8">
@@ -15,7 +17,7 @@ const FramePreview = () => {
                 </h2>
 
                 <p className="mt-1 text-sm text-slate-500">
-                    Your profile frame updates automatically.
+                    {isFrameGenerated ? "Your Goa profile frame is ready to share." : "Your profile frame updates automatically."}
                 </p>
             </div>
 
@@ -42,6 +44,8 @@ const FramePreview = () => {
                     id="frame-export"
                     className="relative h-[330px] w-[330px] sm:h-[405px] sm:w-[405px]"
                 >
+
+                    {isFrameGenerated && <div className="pointer-events-none absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,transparent_62%,rgba(7,70,24,0.34)_63%,transparent_68%)] sm:h-[355px] sm:w-[355px]" />}
 
                     {/* MAIN PHOTO */}
 
@@ -113,8 +117,8 @@ const FramePreview = () => {
                             sm:w-[316px]
                             rounded-full
                             border-[7px]
-                            border-[#39FF14]
-                            shadow-[0_0_30px_rgba(57,255,20,0.35)]
+                            border-[#0A6A24]
+                            shadow-[0_0_0_6px_rgba(10,106,36,0.12)]
                         "
                     />
 
@@ -135,7 +139,7 @@ const FramePreview = () => {
                             sm:w-[340px]
                             rounded-full
                             border
-                            border-[#39FF14]/30
+                            border-[#0A6A24]/80
                         "
                     />
 
@@ -162,7 +166,7 @@ const FramePreview = () => {
                             whitespace-nowrap
                             rounded-full
                             border
-                            border-[#39FF14]/30
+                            border-[#0A6A24]/80
                             bg-[#0A0F1A]
                             px-5
                             py-2
@@ -234,7 +238,7 @@ const FramePreview = () => {
 
             {/* ACTION BUTTONS */}
 
-            <FrameActions />
+            <FrameActions onGenerated={() => setIsFrameGenerated(true)} />
 
         </div>
     );

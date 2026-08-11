@@ -14,6 +14,7 @@ export const UploadCard = () => {
         data,
         setData,
         resetData,
+        setIsGenerated,
     } = useGenerator();
 
     const onDrop = useCallback(
@@ -35,8 +36,9 @@ export const UploadCard = () => {
                 ...previous,
                 image: imageUrl,
             }));
+            setIsGenerated(false);
         },
-        [setData]
+        [setData, setIsGenerated]
     );
 
     const {
@@ -60,6 +62,7 @@ export const UploadCard = () => {
             ...previous,
             image: "",
         }));
+        setIsGenerated(false);
     };
 
     const handleReset = () => {

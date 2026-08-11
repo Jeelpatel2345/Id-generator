@@ -1,7 +1,7 @@
 import useGenerator from "../../hooks/useGenerator";
 
 const BuilderDetailsPanel = () => {
-    const { data, setData } = useGenerator();
+    const { data, setData, setIsGenerated } = useGenerator();
 
     return (
         <div className="mt-6 rounded-3xl border border-[#39FF14]/20 bg-[#0A0F1A] p-5 sm:p-6">
@@ -26,6 +26,7 @@ const BuilderDetailsPanel = () => {
                             name: e.target.value,
                         }))
                     }
+                    onInput={() => setIsGenerated(false)}
                     placeholder="Enter your full name"
                     className="
                         w-full
@@ -58,6 +59,7 @@ const BuilderDetailsPanel = () => {
                             role: e.target.value,
                         }))
                     }
+                    onInput={() => setIsGenerated(false)}
                     className="
                         w-full
                         rounded-xl
@@ -88,23 +90,27 @@ const BuilderDetailsPanel = () => {
                     X Username
                 </label>
 
-                <input
+                <div className="relative">
+                    <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 font-semibold text-[#39FF14]">@</span>
+                    <input
                     type="text"
-                    value={data.username}
+                    value={data.username.replace(/^@+/, "")}
                     onChange={(e) =>
                         setData((previous) => ({
                             ...previous,
-                            username: e.target.value,
+                            username: e.target.value.replace(/^@+/, ""),
                         }))
                     }
-                    placeholder="@username"
+                    onInput={() => setIsGenerated(false)}
+                    placeholder="username"
                     className="
                         w-full
                         rounded-xl
                         border
                         border-slate-700
                         bg-[#111827]
-                        px-4
+                        pl-8
+                        pr-4
                         py-3
                         text-white
                         outline-none
@@ -112,6 +118,7 @@ const BuilderDetailsPanel = () => {
                         focus:border-[#39FF14]
                     "
                 />
+                </div>
             </div>
 
 

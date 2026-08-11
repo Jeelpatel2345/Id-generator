@@ -26,11 +26,12 @@ const BuilderHeader = () => {
 
                     <h3
                         className="
-                            truncate
                             text-xs
                             font-bold
+                            leading-normal
                             tracking-wide
                             text-white
+                            whitespace-nowrap
                             sm:text-base
                         "
                     >
@@ -55,7 +56,7 @@ const BuilderHeader = () => {
                     border
                     border-[#39FF14]/20
                     bg-[#39FF14]/10
-                    px-2
+                    px-2.5
                     py-1.5
                     sm:px-4
                     sm:py-2

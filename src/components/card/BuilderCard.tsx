@@ -2,7 +2,6 @@ import useGenerator from "../../hooks/useGenerator";
 
 import BuilderHeader from "./BuilderHeader";
 import BuilderProfile from "./BuilderProfile";
-import BuilderFooter from "./BuilderFooter";
 
 const BuilderCard = () => {
     const { data, isGenerated } = useGenerator();
@@ -87,7 +86,7 @@ const BuilderCard = () => {
                         sm:text-base
                     "
                 >
-                    {data.username || "@username"}
+                    @{data.username.replace(/^@+/, "") || "username"}
                 </p>
 
                 <div className="mt-4 flex justify-center gap-6 text-left">
@@ -141,21 +140,6 @@ const BuilderCard = () => {
 
             </div>
 
-
-            {/* FOOTER */}
-
-            <div
-                className="
-                    relative z-10
-                    border-t
-                    border-white/10
-                    px-4
-                    py-3
-                    sm:px-6
-                "
-            >
-                <BuilderFooter />
-            </div>
 
         </div>
     );

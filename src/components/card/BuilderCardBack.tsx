@@ -25,13 +25,13 @@ const BuilderCardBack = () => {
     }, [data.builderId, data.name, data.role, data.username]);
 
     return (
-        <div className="w-full max-w-[390px] aspect-[4/5] overflow-hidden rounded-3xl border border-[#39FF14]/25 bg-[#07131A] p-6 shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
+        <div className="w-full max-w-[390px] min-h-[560px] overflow-hidden rounded-3xl border border-[#39FF14]/25 bg-[#07131A] p-5 shadow-[0_20px_60px_rgba(0,0,0,0.35)] sm:p-6">
             <div className="flex items-center justify-between border-b border-white/10 pb-4">
                 <div className="flex items-center gap-3"><img src={logo} alt="Hacker House" className="h-10 w-10 rounded-lg object-cover" /><div><p className="text-xs font-bold tracking-[0.14em] text-white">HACKER HOUSE GOA</p><p className="text-[10px] text-slate-400">BUILDER ACCESS PASS</p></div></div>
                 <span className="rounded-full border border-[#39FF14]/30 bg-[#39FF14]/10 px-3 py-1 text-[10px] font-bold tracking-wider text-[#39FF14]">2026</span>
             </div>
 
-            <div className="flex h-[calc(100%-72px)] flex-col justify-between py-5">
+            <div className="flex flex-col justify-between gap-6 py-5">
                 <div className="flex items-start justify-between gap-5">
                     <div>
                         <p className="text-xs font-bold tracking-[0.20em] text-[#39FF14]">BUILDER VERIFICATION</p>
