@@ -1,8 +1,11 @@
 import BuilderCard from "../card/BuilderCard";
+import BuilderCardBack from "../card/BuilderCardBack";
 import ActionButtons from "./ActionButtons";
 import { motion } from "framer-motion";
+import useGenerator from "../../hooks/useGenerator";
 
 export const PreviewCard = () => {
+    const { isGenerated } = useGenerator();
     return (
         <motion.div
             initial={{ opacity: 0, x: 30 }}
@@ -66,8 +69,9 @@ export const PreviewCard = () => {
                     className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(57,255,20,0.1),transparent_60%)] pointer-events-none"
                 />
                 
-                <div className="relative z-10 w-full flex justify-center">
+                <div id="builder-card-export" className="relative z-10 flex w-full flex-col items-center justify-center gap-5 sm:gap-6">
                     <BuilderCard />
+                    {isGenerated && <BuilderCardBack />}
                 </div>
             </div>
 

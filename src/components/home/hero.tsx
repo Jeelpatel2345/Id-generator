@@ -3,21 +3,15 @@ import HeroPreview from './HeroPreview';
 
 const Hero = () => {
   return (
-    <section id="hero" className="relative min-h-screen pt-32 pb-20 flex items-center bg-[#04070D] overflow-hidden">
+    <section id="hero" className="goa-page-bg relative flex min-h-screen items-center overflow-hidden pb-20 pt-32">
       {/* Background Effects */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#04070D] via-transparent to-[#04070D]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
         
         {/* Glowing Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#39FF14]/10 rounded-full blur-[120px]"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#00F5D4]/10 rounded-full blur-[120px]"></div>
+        <div className="absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-[#39FF14]/10 blur-[120px]"></div>
+        <div className="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-[#00F5D4]/10 blur-[120px]"></div>
         
-        {/* Grid lines */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)]"></div>
-        
-        {/* Scanline effect */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_50%,rgba(0,0,0,0.2)_51%)] bg-[size:100%_4px] pointer-events-none"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">

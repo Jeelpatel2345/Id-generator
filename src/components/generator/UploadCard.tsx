@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import {
     Upload,
@@ -17,12 +17,19 @@ export const UploadCard = () => {
     } = useGenerator();
 
     const onDrop = useCallback(
-        (acceptedFiles: File[]) => {
+        async (acceptedFiles: File[]) => {
             if (!acceptedFiles.length) return;
 
             const file = acceptedFiles[0];
 
-            const imageUrl = URL.createObjectURL(file);
+            // Store an embedded image rather than a temporary blob URL. This
+            // keeps the photo available to the PNG renderer on every browser.
+            const imageUrl = await new Promise<string>((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(String(reader.result));
+                reader.onerror = () => reject(reader.error);
+                reader.readAsDataURL(file);
+            });
 
             setData((previous) => ({
                 ...previous,
@@ -58,14 +65,6 @@ export const UploadCard = () => {
     const handleReset = () => {
         resetData();
     };
-
-    useEffect(() => {
-        return () => {
-            if (data.image?.startsWith("blob:")) {
-                URL.revokeObjectURL(data.image);
-            }
-        };
-    }, [data.image]);
 
     return (
         <motion.div

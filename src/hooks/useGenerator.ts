@@ -1,8 +1,6 @@
 import { useContext } from "react";
 
-import {
-    GeneratorContext,
-} from "../context/GeneratorContext";
+import { GeneratorContext } from "../context/GeneratorStore";
 
 const useGenerator = () => {
     const context = useContext(

@@ -23,10 +23,10 @@ const FramePreview = () => {
             {/* PREVIEW */}
 
             <div
-                id="frame-export"
+                id="frame-preview-surface"
                 className="
         flex
-        min-h-[520px]
+        min-h-[500px]
         items-center
         justify-center
         overflow-hidden
@@ -40,7 +40,7 @@ const FramePreview = () => {
 
                 <div
                     id="frame-export"
-                    className="relative"
+                    className="relative h-[330px] w-[330px] sm:h-[405px] sm:w-[405px]"
                 >
 
                     {/* MAIN PHOTO */}
@@ -48,13 +48,18 @@ const FramePreview = () => {
                     <div
                         className="
                             relative
-                            h-64
-                            w-64
+                            absolute
+                            left-1/2
+                            top-1/2
+                            h-60
+                            w-60
+                            -translate-x-1/2
+                            -translate-y-1/2
                             overflow-hidden
                             rounded-full
                             bg-[#111827]
-                            sm:h-80
-                            sm:w-80
+                            sm:h-72
+                            sm:w-72
                         "
                     >
 
@@ -98,7 +103,14 @@ const FramePreview = () => {
                         className="
                             pointer-events-none
                             absolute
-                            inset-[-12px]
+                            left-1/2
+                            top-1/2
+                            h-[272px]
+                            w-[272px]
+                            -translate-x-1/2
+                            -translate-y-1/2
+                            sm:h-[316px]
+                            sm:w-[316px]
                             rounded-full
                             border-[7px]
                             border-[#39FF14]
@@ -113,7 +125,14 @@ const FramePreview = () => {
                         className="
                             pointer-events-none
                             absolute
-                            inset-[-22px]
+                            left-1/2
+                            top-1/2
+                            h-[292px]
+                            w-[292px]
+                            -translate-x-1/2
+                            -translate-y-1/2
+                            sm:h-[340px]
+                            sm:w-[340px]
                             rounded-full
                             border
                             border-[#39FF14]/30
@@ -121,36 +140,15 @@ const FramePreview = () => {
                     />
 
 
-                    {/* TOP LABEL */}
+                    <svg viewBox="0 0 330 330" className="pointer-events-none absolute inset-0 h-full w-full overflow-visible sm:hidden" aria-hidden="true">
+                        <defs><path id="goa-frame-arc-mobile" d="M 32,166 A 133,133 0 0,1 298,166" /></defs>
+                        <text fill="#39FF14" className="text-[11px] font-bold tracking-[0.32em]"><textPath href="#goa-frame-arc-mobile" startOffset="50%" textAnchor="middle">HACKER HOUSE GOA 2026</textPath></text>
+                    </svg>
 
-                    <div
-                        className="
-                            absolute
-                            -top-16
-                            left-1/2
-                            -translate-x-1/2
-                            whitespace-nowrap
-                            rounded-full
-                            border
-                            border-[#39FF14]/30
-                            bg-[#0A0F1A]
-                            px-5
-                            py-2
-                        "
-                    >
-
-                        <span
-                            className="
-                                text-[10px]
-                                font-bold
-                                tracking-[0.2em]
-                                text-[#39FF14]
-                            "
-                        >
-                            HACKER HOUSE
-                        </span>
-
-                    </div>
+                    <svg viewBox="0 0 405 405" className="pointer-events-none absolute inset-0 hidden h-full w-full overflow-visible sm:block" aria-hidden="true">
+                        <defs><path id="goa-frame-arc-desktop" d="M 32,204 A 170,170 0 0,1 373,204" /></defs>
+                        <text fill="#39FF14" className="text-[12px] font-bold tracking-[0.35em]"><textPath href="#goa-frame-arc-desktop" startOffset="50%" textAnchor="middle">HACKER HOUSE GOA 2026</textPath></text>
+                    </svg>
 
 
                     {/* BOTTOM LABEL */}
@@ -158,7 +156,7 @@ const FramePreview = () => {
                     <div
                         className="
                             absolute
-                            -bottom-16
+                            bottom-0
                             left-1/2
                             -translate-x-1/2
                             whitespace-nowrap

@@ -17,7 +17,7 @@ const FrameUpload = () => {
     } = useGenerator();
 
     const onDrop = useCallback(
-        (acceptedFiles: File[]) => {
+        async (acceptedFiles: File[]) => {
 
             if (!acceptedFiles.length) {
                 return;
@@ -25,8 +25,12 @@ const FrameUpload = () => {
 
             const file = acceptedFiles[0];
 
-            const imageUrl =
-                URL.createObjectURL(file);
+            const imageUrl = await new Promise<string>((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(String(reader.result));
+                reader.onerror = () => reject(reader.error);
+                reader.readAsDataURL(file);
+            });
 
             setData((previous) => ({
                 ...previous,

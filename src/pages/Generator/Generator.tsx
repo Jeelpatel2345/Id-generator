@@ -14,7 +14,7 @@ const GeneratorContent = () => {
   const isFrameMode = searchParams.get('mode') === 'frame';
 
   return (
-    <main className="min-h-screen bg-[#04070D] text-white">
+    <main className="goa-page-bg min-h-screen text-[#123B45]">
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
         <button
           onClick={() => navigate('/')}
@@ -24,10 +24,10 @@ const GeneratorContent = () => {
           Back to Home
         </button>
 
-        <div className="flex gap-3 mt-4 mb-8">
+        <div className="mt-4 mb-8 flex flex-wrap gap-3">
           <button
             onClick={() => setSearchParams({ mode: 'builder' })}
-            className={`flex items-center gap-2 rounded-xl border px-5 py-3 text-sm font-medium transition cursor-pointer ${
+            className={`flex min-w-0 flex-1 items-center justify-center gap-2 rounded-xl border px-4 py-3 text-sm font-medium transition cursor-pointer sm:flex-none sm:px-5 ${
               !isFrameMode
                 ? 'bg-[#39FF14]/10 border-[#39FF14]/30 text-[#39FF14]'
                 : 'border-white/10 text-slate-400 hover:text-white hover:border-white/20'
@@ -38,7 +38,7 @@ const GeneratorContent = () => {
           </button>
           <button
             onClick={() => setSearchParams({ mode: 'frame' })}
-            className={`flex items-center gap-2 rounded-xl border px-5 py-3 text-sm font-medium transition cursor-pointer ${
+            className={`flex min-w-0 flex-1 items-center justify-center gap-2 rounded-xl border px-4 py-3 text-sm font-medium transition cursor-pointer sm:flex-none sm:px-5 ${
               isFrameMode
                 ? 'bg-[#39FF14]/10 border-[#39FF14]/30 text-[#39FF14]'
                 : 'border-white/10 text-slate-400 hover:text-white hover:border-white/20'

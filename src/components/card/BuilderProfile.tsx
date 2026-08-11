@@ -9,8 +9,8 @@ const BuilderProfile = () => {
             <div
                 className="
                     flex
-                    h-36
-                    w-36
+                    h-28
+                    w-28
                     items-center
                     justify-center
                     overflow-hidden
@@ -18,9 +18,9 @@ const BuilderProfile = () => {
                     border-4
                     border-[#39FF14]
                     bg-[#111827]
-                    shadow-[0_0_30px_rgba(57,255,20,0.15)]
-                    sm:h-36
-                    sm:w-36
+                    shadow-[0_0_0_5px_rgba(57,255,20,0.10),0_0_30px_rgba(57,255,20,0.2)]
+                    sm:h-32
+                    sm:w-32
                 "
             >
 
@@ -33,7 +33,7 @@ const BuilderProfile = () => {
                             w-full
                             block
                             object-cover
-                            object-center
+                            object-[center_35%]
                         "
                     />
                 ) : (

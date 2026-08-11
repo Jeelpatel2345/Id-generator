@@ -8,6 +8,11 @@
   --color-neon: #39FF14;
   --color-dark: #04070D;
   --color-card: #0A0F1A;
+  --goa-ocean: #00F5D4;
+  --goa-deep: #FFFFFF;
+  --goa-sand: #04070D;
+  --goa-coral: #39FF14;
+  --goa-sun: #39FF14;
 }
 
 html {
@@ -17,10 +22,63 @@ html {
 body {
   margin: 0;
   background-color: var(--color-dark);
-  color: #cbd5e1; /* slate-300 */
+  color: #CBD5E1;
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Dark Hacker House design system. */
+main, #root > div {
+  background: var(--color-dark);
+}
+
+[class*="bg-[#04070D]"], [class*="bg-[#070B12]"] {
+  background-color: var(--color-dark) !important;
+}
+
+[class*="bg-[#0A0F1A]"], [class*="bg-[#111827]"] {
+  background-color: var(--color-card) !important;
+}
+
+[class*="text-[#39FF14]"] { color: #39FF14 !important; }
+[class*="border-[#39FF14]"] { border-color: rgba(57,255,20,0.22) !important; }
+[class*="bg-[#39FF14]"] { background-color: #39FF14 !important; }
+[class*="text-black"] { color: #000000 !important; }
+
+/* Keep neon green as an accent, not a full-screen visual weight. */
+[class*="bg-[#39FF14]/10"], [class*="bg-[#39FF14]/20"] {
+  background-color: rgba(57,255,20,0.055) !important;
+}
+
+[class*="shadow-[0_0_20px_rgba(57,255,20"],
+[class*="shadow-[0_0_30px_rgba(57,255,20"],
+[class*="shadow-[0_0_40px_rgba(57,255,20"] {
+  box-shadow: 0 10px 28px rgba(0,0,0,0.24) !important;
+}
+
+button[class*="bg-[#39FF14]"] {
+  box-shadow: 0 8px 18px rgba(57,255,20,0.18) !important;
+}
+
+button[class*="bg-[#39FF14]"]:hover {
+  filter: brightness(1.06);
+}
+
+.goa-page-bg {
+  background:
+    radial-gradient(circle at 85% 8%, rgba(57,255,20,0.12), transparent 22rem),
+    radial-gradient(circle at 10% 35%, rgba(0,245,212,0.10), transparent 27rem),
+    var(--color-dark);
+}
+
+button, input, select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 2px solid #39FF14;
+  outline-offset: 3px;
 }
 
 /* Custom scrollbar */

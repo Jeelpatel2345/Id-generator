@@ -15,7 +15,7 @@ const BuilderFooter = () => {
                     sm:text-sm
                 "
             >
-                BUILDER #{data.builderId || "0000"}
+                BUILDER {data.builderId || "#0000"}
             </span>
 
         </div>

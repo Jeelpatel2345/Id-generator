@@ -1,19 +1,10 @@
 import {
-    createContext,
     useState,
     type ReactNode,
 } from "react";
 
 import type { BuilderData } from "../types/generator";
-
-interface ContextType {
-    data: BuilderData;
-    setData: React.Dispatch<React.SetStateAction<BuilderData>>;
-    resetData: () => void;
-
-    isGenerated: boolean;
-    setIsGenerated: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import { GeneratorContext } from "./GeneratorStore";
 
 const generateBuilderId = () => {
     const existingId =
@@ -36,9 +27,6 @@ const generateBuilderId = () => {
 
     return newId;
 };
-
-export const GeneratorContext =
-    createContext({} as ContextType);
 
 export const GeneratorProvider = ({
     children,

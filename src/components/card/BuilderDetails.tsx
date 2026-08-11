@@ -114,6 +114,7 @@ const BuilderDetailsPanel = () => {
                 />
             </div>
 
+
         </div>
     );
 };

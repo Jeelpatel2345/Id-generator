@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { toPng } from "html-to-image";
+import html2canvas from "html2canvas";
 
 import {
     Download,
@@ -19,20 +19,23 @@ const ActionButtons = () => {
 
     const [isGenerating, setIsGenerating] =
         useState(false);
+    const [validationMessage, setValidationMessage] = useState("");
 
     const generatePreview = () => {
 
-        if (!data.image) {
+        if (!data.image || !data.name.trim() || !data.username.trim()) {
+            setValidationMessage("Add a photo, full name, and X username before generating your Builder Card.");
             return;
         }
 
+        setValidationMessage("");
         setIsGenerated(true);
     };
 
     const generatePNG = async () => {
 
         const card = document.getElementById(
-            "builder-card"
+            "builder-card-export"
         );
 
         if (!card) {
@@ -49,15 +52,14 @@ const ActionButtons = () => {
             // which makes downloaded text look soft or inconsistent.
             await document.fonts?.ready;
 
-            const png = await toPng(card, {
-                pixelRatio: 3,
-                cacheBust: true,
+            const canvas = await html2canvas(card, {
+                scale: 3,
                 backgroundColor: "#0A0F1A",
+                useCORS: true,
+                logging: false,
+                width: card.offsetWidth,
+                height: card.offsetHeight,
             });
-
-            const response = await fetch(png);
-            const blob = await response.blob();
-            const url = URL.createObjectURL(blob);
 
             const link = document.createElement("a");
 
@@ -73,7 +75,7 @@ const ActionButtons = () => {
                         ""
                     ) || "builder";
 
-            link.href = url;
+            link.href = canvas.toDataURL("image/png");
 
             link.download = `HH-Goa-2026-${safeName}-Builder-Card.png`;
 
@@ -82,8 +84,6 @@ const ActionButtons = () => {
             link.click();
 
             document.body.removeChild(link);
-
-            URL.revokeObjectURL(url);
 
             setIsGenerating(false);
 
@@ -100,6 +100,8 @@ const ActionButtons = () => {
 
     return (
         <div className="space-y-3">
+
+            {validationMessage && <p className="rounded-xl border border-amber-400/30 bg-amber-400/10 px-3 py-2 text-center text-xs text-amber-300">{validationMessage}</p>}
 
             {/* GENERATE PREVIEW */}
 
